@@ -1,0 +1,70 @@
+#include<stdio.h>
+#include<string.h>
+
+void entry(char book[][20],int m,int n);
+void issue(char [][20],int m,int n);
+void _return(char [][20],int m,int n);
+void printlist(char [][20],int m,int n);
+
+int main()
+{	int x;
+	printf("how many books space do you have ,to store book :");
+	scanf("%d",&x);
+	char book[x][20];
+	entry(book,x,20);     //entry of book at starting
+	printf("available books are :\n");
+	printlist(book,x,20); //printing list of books
+	issue(book,x,20);     //taking  a book
+	printf("printing new update list :\n");
+	printlist(book,x,20);   //update of book list printed
+	printf("return a book:\n");
+	_return(book,x,20);     //return of book
+	printf("printing update list :\n");
+	printlist(book,x,20);     //update of book after return 
+	
+	
+	
+	return 0;
+}
+void entry(char book[][20],int m,int n)  //fun to entry the books
+{	printf("enter the books name \n");
+	for (int i=0;i<m;i++)
+	{	scanf("%s",&book[i]);
+	}
+	
+	printf("data entry completed \n");
+}
+void printlist(char book[][20],int m,int n)  //fun to print list of books
+{	for (int i=0;i<m;i++)
+	{	printf("%s \n",&book[i]);
+	}
+}
+
+void issue(char book[][20],int m,int n)      //checking a book and issuing it
+{	char name[20];
+	printf("enter the name of the book you want to issue :");
+	scanf("%s",&name);
+	for(int i=0;i<m;i++)
+	{	if(strcmp(book[i],name)==0)
+		{	printf("book present \n");
+			printf("book issued \n");
+			book[i][0]='\0';
+			return ;
+		}
+		
+	}
+	printf("book not present \n");
+	
+}
+void _return(char book[][20],int m,int n)       //fun to return a book 
+{	
+	for(int i=0;i<m;i++)
+	{	if(book[i][0]==0)
+		{	printf("space is blank ,enter book name :");
+			scanf("%s",&book[i]);
+			return ;
+		}
+	}
+	printf("no space /m");
+	return ;
+}
